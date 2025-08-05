@@ -16,11 +16,10 @@ app.post("/", async (req, res) => {
   const query = req.body.name.toLowerCase();
 
   try {
-    const response = await fetch("https://fakestoreapi.com/products");
+    const response = await fetch("https://dummyjson.com/products");
     const data = await response.json();
 
-    // Search for product match
-    const result = data.find(product =>
+    const result = data.products.find(product =>
       product.title.toLowerCase().includes(query)
     );
 
@@ -29,7 +28,7 @@ app.post("/", async (req, res) => {
         name: result.title,
         price: result.price,
         description: result.description,
-        image: result.image
+        image: result.thumbnail
       });
     } else {
       res.render("product", {
@@ -39,14 +38,17 @@ app.post("/", async (req, res) => {
         image: ""
       });
     }
+
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Server error");
+    console.error("API Error:", err);
+    res.status(500).send("Server error while fetching products.");
   }
 });
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
 
