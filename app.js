@@ -17,9 +17,9 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
   a.push(req.body.name);
 
-  setTimeout(() => {
-    res.render("product", { name: a[0] });
-  }, 10000);
+  const name = req.body.name;
+res.render("product", { name });
+
 });
 
 const PORT = process.env.PORT || 3000;
