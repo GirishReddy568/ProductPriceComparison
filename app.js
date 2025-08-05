@@ -38,6 +38,7 @@ app.post("/", async (req, res) => {
         image: ""
       });
     }
+console.log(data.products.map(p => p.title));
 
   } catch (err) {
     console.error("API Error:", err);
@@ -50,5 +51,6 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
 
 
