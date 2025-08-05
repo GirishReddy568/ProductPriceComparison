@@ -1,21 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Search Products</title>
 </head>
 <body>
-  |<center>
-    <form action="/" method="post">
-      <H1>Product</H1>
-      <label for="product">Product</label>
-      <input type="text" name="name" id="">
-      <button type="submit">SUBMMIT
-      </button>
-    </form>
-   <p><%= name %></p> 
-  </center>
-  
+  <h1>Search for a Product</h1>
+  <form method="POST" action="/">
+    <input type="text" name="name" placeholder="Enter product name" required />
+    <button type="submit">Search</button>
+  </form>
 </body>
 </html>

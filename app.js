@@ -1,28 +1,63 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const fetch = require("node-fetch"); // API request
 
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-
-const a = [];
-
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
-  res.render("index", { name: "" });
+  res.render("index");
 });
 
-app.post("/", (req, res) => {
-  a.push(req.body.name);
+app.post("/", async (req, res) => {
+  const query = req.body.name.toLowerCase();
 
+<<<<<<< HEAD
   const name = req.body.name;
 res.render("product", { name });
 
+=======
+  try {
+    const response = await fetch("https://dummyjson.com/products");
+    const data = await response.json();
+
+    const result = data.products.find(product =>
+      product.title.toLowerCase().includes(query)
+    );
+
+    if (result) {
+      res.render("product", {
+        name: result.title,
+        price: result.price,
+        description: result.description,
+        image: result.thumbnail
+      });
+    } else {
+      res.render("product", {
+        name: "Product not found",
+        price: "",
+        description: "",
+        image: ""
+      });
+    }
+console.log(data.products.map(p => p.title));
+
+  } catch (err) {
+    console.error("API Error:", err);
+    res.status(500).send("Server error while fetching products.");
+  }
+>>>>>>> 1f11b989d8f1708f15ce8f439697cbd741b751e1
 });
 
-const PORT = process.env.PORT || 3000;
+
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
+
+
+
+

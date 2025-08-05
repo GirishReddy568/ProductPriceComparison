@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Product</title>
 </head>
 <body>
+<<<<<<< HEAD
   |<center>
     <form action="/" method="POST">
   <input type="text" name="name" placeholder="Enter product name" required />
@@ -14,5 +13,15 @@
 
   </center>
   
+=======
+  <h1><%= name %></h1>
+  <% if (price) { %>
+    <p>Price: $<%= price %></p>
+    <p><%= description %></p>
+    <img src="<%= image %>" width="200" alt="Product Image" />
+  <% } %>
+  <br />
+  <a href="/">Search Another</a>
+>>>>>>> 1f11b989d8f1708f15ce8f439697cbd741b751e1
 </body>
 </html>
